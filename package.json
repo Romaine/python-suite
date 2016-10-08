@@ -1,9 +1,13 @@
 {
   "name": "python-suite",
   "main": "./lib/python-suite",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A convenient display of all funtions and variables, plus other useful tools",
-  "keywords": ["python", "outliner", "navigator"],
+  "keywords": [
+    "python",
+    "outliner",
+    "navigator"
+  ],
   "repository": "https://github.com/Romaine/python-suite",
   "license": "MIT",
   "engines": {
@@ -26,5 +30,5 @@
   "dependencies": {
     "jquery": "2.1.4",
     "space-pen": "^5.1.2"
-}
+  }
 }
