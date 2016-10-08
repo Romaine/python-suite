@@ -3,9 +3,8 @@
   "main": "./lib/python-suite",
   "version": "0.0.0",
   "description": "A convenient display of all funtions and variables, plus other useful tools",
-  "keywords": [Python, outliner, Navigator
-  ],
-  "repository": "https://github.com/atom/python-suite",
+  "keywords": ["python", "outliner", "navigator"],
+  "repository": "https://github.com/Romaine/python-suite",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
@@ -25,9 +24,7 @@
     "grunt-atomdoc": "^1.0.0"
   },
   "dependencies": {
-    "grim": "^1.0.0",
     "jquery": "2.1.4",
-    "underscore-plus": "1.x",
     "space-pen": "^5.1.2"
 }
 }
