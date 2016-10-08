@@ -11,6 +11,7 @@ class PythonSuiteView extends View
     @div class: "python-suite", =>
       @h4 "outliner"
       @div class: "outline", outlet: "outline", =>
+      
 
   initialize: () ->
 
