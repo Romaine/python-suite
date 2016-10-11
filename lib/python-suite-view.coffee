@@ -2,19 +2,32 @@ View = require('space-pen').View
 NameView = require './name-view'
 PythonSuite = require './python-suite'
 {$, $$} = require 'space-pen'
+{CompositeDisposable} = require 'atom'
 
 module.exports =
 class PythonSuiteView extends View
-
   panel: null
+
   @content: ->
     @div class: "python-suite", =>
       @h4 "outliner"
       @div class: "outline", outlet: "outline", =>
-      
+
 
   initialize: () ->
 
+
+  updateOutline: (data) ->
+    console.log(data.toString())
+    reply = JSON.parse(data.toString())
+    console.log reply
+    exports.data = ->
+      return reply
+
+    console.log "export"
+    console.log exports.data
+    console.log "bang"
+    @pythonSuiteView.updateView()
 
 
   updateView: ->
@@ -23,8 +36,6 @@ class PythonSuiteView extends View
         console.log(e)
         nameView = new NameView(e)
         @outline.append(nameView)
-      console.log atom.workspace.getLeftPanels()[0].getItem()[0].appendChild()
-
 
 
 
@@ -35,8 +46,3 @@ class PythonSuiteView extends View
   # Tear down any state and detach
   destroy: ->
     @content.remove()
-
-  attach: ->
-    @panel = atom.workspace.addBottomPanel(item: this, visible: true)
-
-    console.log atom.workspace.getLeftPanels()

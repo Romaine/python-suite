@@ -2,8 +2,9 @@ PythonSuiteView = require './python-suite-view'
 NameView = require './name-view'
 spawn = require('child_process').spawn
 pyname = __dirname + "/outline.py"
-
 {CompositeDisposable} = require 'atom'
+
+
 
 module.exports = PythonSuite =
   pythonSuiteView: null
@@ -11,20 +12,28 @@ module.exports = PythonSuite =
   subscriptions: null
   child: null
   data: null
+  toggle: null
 
   activate: (state) ->
     @pythonSuiteView = new PythonSuiteView()
-    @pythonSuiteView.attach()
-    console.log "made view"
-    @child = undefined
+
+    @attach()
 
     @spawnChild()
-
-    # Events subscribed to in atom's system can be easily cleaned up with a CompositeDisposable
     @subscriptions = new CompositeDisposable
+    @subscriptions.add atom.workspace.onDidChangeActivePaneItem(@checkGrammar)
 
-    # Register command that toggles this view
-    @subscriptions.add atom.commands.add 'atom-workspace', 'python-suite:toggle': => @toggle()
+  checkGrammar: () ->
+    editor = atom.workspace.getActiveTextEditor()
+    if editor
+      console.log editor.getGrammar().name.toString()
+      if editor.getGrammar().name == "Python"
+        editor.getText()
+        PythonSuite.attach()
+      else
+        PythonSuite.panel.destroy()
+
+
 
 
   updateOutline: (data) ->
@@ -34,9 +43,7 @@ module.exports = PythonSuite =
     exports.data = ->
       return reply
 
-    console.log "export"
     console.log exports.data
-    console.log "bang"
     @pythonSuiteView.updateView()
 
 
@@ -48,14 +55,16 @@ module.exports = PythonSuite =
 
     @child.stdout.on('data', (data) ->
       PythonSuite.updateOutline(data)
-      console.log()
     )
 
     @child.stderr.on('data', (data) ->
       console.log data.toString()
       )
 
+  attach: ->
+    @panel = atom.workspace.addBottomPanel(item: @pythonSuiteView, visible: true)
 
+    console.log atom.workspace.getLeftPanels()
 
   deactivate: ->
     @panel.destroy()
