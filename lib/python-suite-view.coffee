@@ -24,15 +24,18 @@ class PythonSuiteView extends View
     exports.data = ->
       return reply
 
-    console.log "export"
     console.log exports.data
-    console.log "bang"
     @pythonSuiteView.updateView()
 
 
   updateView: ->
     if PythonSuite.data()?
-      for e in PythonSuite.data()
+      data = PythonSuite.data()
+      editor = atom.workspace.getActiveTextEditor()
+      path = editor.getPath()
+      console.log data
+      console.log data[path]
+      for e in data[path]
         console.log(e)
         nameView = new NameView(e)
         @outline.append(nameView)

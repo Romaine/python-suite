@@ -26,14 +26,21 @@ module.exports = PythonSuite =
   checkGrammar: () ->
     editor = atom.workspace.getActiveTextEditor()
     if editor
-      console.log editor.getGrammar().name.toString()
       if editor.getGrammar().name == "Python"
-        editor.getText()
+        text = editor.getText()
+        path = editor.getPath()
+        PythonSuite.child.stdin.write(JSON.stringify({
+          command: "names"
+          path: path
+          source: text
+        }) + "\n")
+        console.log "we got this far"
+
         PythonSuite.attach()
+        PythonSuite.pythonSuiteView.updateView()
+
       else
         PythonSuite.panel.destroy()
-
-
 
 
   updateOutline: (data) ->
@@ -51,9 +58,13 @@ module.exports = PythonSuite =
     @child = spawn("python3", [pyname])
     @child.stdin.setEncoding = "utf-8"
 
-    @child.stdin.write "names\n"
+
+    exports.stdin = @child.stdin.write
 
     @child.stdout.on('data', (data) ->
+      console.log data
+      exports.data = ->
+        return data
       PythonSuite.updateOutline(data)
     )
 
@@ -61,9 +72,9 @@ module.exports = PythonSuite =
       console.log data.toString()
       )
 
+
   attach: ->
     @panel = atom.workspace.addBottomPanel(item: @pythonSuiteView, visible: true)
-
     console.log atom.workspace.getLeftPanels()
 
   deactivate: ->

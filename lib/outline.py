@@ -3,17 +3,12 @@ import json
 
 
 def main():
-    def names():
-        print(temp, ice. banana)
-
-        print(u"aaaaaaaa")
-
-    session = Session(
-        "/home/romaine/.atom/dev/packages/python-suite/lib/outline.py")
-    dialogue(session)
+    dialogue()
 
 
 class Session:
+
+    sessions = {}
 
     def __init__(self, source_path):
 
@@ -29,12 +24,24 @@ class Session:
                    "doc": name.doc}
 
 
-def dialogue(self):
+def dialogue():
+    sessions = Session.sessions
     while 1:
-        recv = str(input())
-        recv = recv.split()
-        if recv[0] == "names":
-            print(json.dumps([name for name in self.names()]))
+        recv = input()
+        if not recv:
+            continue
+            print(json.dumps(["continuing"]))
+        else:
+            recv = json.loads(recv)
+            if "command"in recv:
+                if recv["command"] == "names":
+                    if "path" in recv:
+                        if recv["path"] not in sessions:
+                            sessions[recv["path"]] = Session(recv["path"])
+                        if "source" in recv:
+                            sessions[recv["path"]].source_path = recv["source"]
+                            print(
+                                json.dumps({recv["path"]: [name for name in sessions[recv["path"]].names()]}))
 
 
 if __name__ == '__main__':
