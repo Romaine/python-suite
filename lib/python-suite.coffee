@@ -36,7 +36,6 @@ module.exports = PythonSuite =
         }) + "\n")
 
         PythonSuite.pythonSuiteView.show()
-        PythonSuite.pythonSuiteView.updateView()
 
       else
         PythonSuite.pythonSuiteView.hide()

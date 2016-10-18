@@ -25,10 +25,11 @@ class PythonSuiteView extends View
       path = editor.getPath()
       console.log data
       console.log data[path]
-      for e in data[path]
-        console.log(e)
-        nameView = new NameView(e)
-        @outline.append(nameView)
+      if data?
+        for e in data[path]
+          console.log(e)
+          nameView = new NameView(e)
+          @outline.append(nameView)
 
 
 
