@@ -2,7 +2,7 @@
   "name": "python-suite",
   "main": "./lib/python-suite",
   "version": "0.2.0",
-  "description": "pre pre Alpha.  Lacking basic functionality.  A convenient display of all funtions and variables, plus other useful tools",
+  "description": "Beta.  A convenient display of all funtions and variables, plus other useful tools",
   "keywords": [
     "python",
     "outliner",

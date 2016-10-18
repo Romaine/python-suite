@@ -1,5 +1,12 @@
 # python-suite package
 
-This is a work in progress, started in oct 16.
+This package aims to makes atom an even more Python friendly
+place.
 
-![A screenshot of your package](https://f.cloud.github.com/assets/69169/2290250/c35d867a-a017-11e3-86be-cd7c5bf3ff9b.gif)
+Features:
+  - Outliner/Navigator
+
+More coming soon!
+
+If you have any specific ideas about what this package could have, please submit
+a pull request or open an issue.  All suggestions are welcome.

@@ -17,7 +17,7 @@ module.exports = PythonSuite =
   activate: (state) ->
     @pythonSuiteView = new PythonSuiteView()
 
-    @attach()
+    #@attach(
 
     @spawnChild()
     @subscriptions = new CompositeDisposable
@@ -34,13 +34,12 @@ module.exports = PythonSuite =
           path: path
           source: text
         }) + "\n")
-        console.log "we got this far"
 
-        PythonSuite.attach()
+        PythonSuite.pythonSuiteView.show()
         PythonSuite.pythonSuiteView.updateView()
 
       else
-        PythonSuite.panel.destroy()
+        PythonSuite.pythonSuiteView.hide()
 
 
   updateOutline: (data) ->
@@ -49,8 +48,8 @@ module.exports = PythonSuite =
     console.log reply
     exports.data = ->
       return reply
+    console.log atom.workspace.getLeftPanels()[0].item.element.spacePenView.append(@pythonSuiteView)
 
-    console.log exports.data
     @pythonSuiteView.updateView()
 
 
@@ -75,7 +74,9 @@ module.exports = PythonSuite =
 
   attach: ->
     @panel = atom.workspace.addBottomPanel(item: @pythonSuiteView, visible: true)
-    console.log atom.workspace.getLeftPanels()
+
+    #  console.log atom.workspace.getLeftPanels()[0]#getPanel().addItem(item: @pythonSuiteView)
+    #  Figure out how to add the outliner/navigator to the bottom of tree view
 
   deactivate: ->
     @panel.destroy()

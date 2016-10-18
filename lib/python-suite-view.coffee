@@ -9,7 +9,7 @@ class PythonSuiteView extends View
   panel: null
 
   @content: ->
-    @div class: "python-suite", =>
+    @div class: "python-suite tree-view", =>
       @h4 "outliner"
       @div class: "outline", outlet: "outline", =>
 
@@ -17,18 +17,8 @@ class PythonSuiteView extends View
   initialize: () ->
 
 
-  updateOutline: (data) ->
-    console.log(data.toString())
-    reply = JSON.parse(data.toString())
-    console.log reply
-    exports.data = ->
-      return reply
-
-    console.log exports.data
-    @pythonSuiteView.updateView()
-
-
   updateView: ->
+    @outline.empty()
     if PythonSuite.data()?
       data = PythonSuite.data()
       editor = atom.workspace.getActiveTextEditor()
@@ -39,6 +29,7 @@ class PythonSuiteView extends View
         console.log(e)
         nameView = new NameView(e)
         @outline.append(nameView)
+
 
 
 

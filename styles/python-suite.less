@@ -7,15 +7,24 @@
 .python-suite {
   flex-grow: 1;
   flex-shrink: 0;
+  padding: 10px;
+  height: 100%
 }
 
 .outline {
-  height: 300px;
-  width: 400px;
+  //height: 100%;
+  width: 100%;
+  padding: inherit;
   background: @syntax-bg;
   border-image: linear-gradient(#1f1f1f 5px, #121212 200px) 0 1 0 0 stretch;
   border-width: 2px;
+  overflow-y: scroll;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}
+
 
 .line {
   text-align: right;
