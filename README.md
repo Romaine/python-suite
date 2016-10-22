@@ -10,3 +10,7 @@ More coming soon!
 
 If you have any specific ideas about what this package could have, please submit
 a pull request or open an issue.  All suggestions are welcome.
+
+Dependencies:
+  - python3
+  - jedi

@@ -3,6 +3,7 @@ import json
 
 
 def main():
+    print("started python program")
     dialogue()
 
 

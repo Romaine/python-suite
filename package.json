@@ -6,7 +6,8 @@
   "keywords": [
     "python",
     "outliner",
-    "navigator"
+    "navigator",
+    "jedi"
   ],
   "repository": "https://github.com/Romaine/python-suite",
   "license": "MIT",

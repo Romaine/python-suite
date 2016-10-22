@@ -32,9 +32,6 @@ class PythonSuiteView extends View
           @outline.append(nameView)
 
 
-
-
-
   # Returns an object that can be retrieved when package is activated
   serialize: ->
 
