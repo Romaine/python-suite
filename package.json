@@ -1,7 +1,7 @@
 {
   "name": "python-suite",
   "main": "./lib/python-suite",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Beta.  A convenient display of all funtions and variables, plus other useful tools",
   "keywords": [
     "python",
